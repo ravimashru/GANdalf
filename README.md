@@ -13,10 +13,13 @@ The following conclusions were drawn while working on this project:
 1. The quality of the generated images doesn't only depend on the network, but on the quality of the sketches of the person that are used for training. If the sketches do not have a high fidelity then the generated images look like a different human being. In this case, increasing the performance of a network just makes it generated images of a different human being more accurately.
 2. There is no quantitative way to measure the performance of two CycleGANs with each other. The judgement in quality was done using visual inspection. Metrics like the Inception Score would just evaluate how realistic the output of the network is, and not if it is a faithful reconstruction of the person's image from a sketch.
 3. The network was much better at generating sketches from photos than generating photos from sketches. This could be because sketches have lesser detail and it was easier for the network to learn a compression function converts the detail in a photo to the detail in a sketch.
+4. The changes made to create the modified network increase the number of parameters by around **400,000** but reduced the training time by around **7** seconds. The increase in parameters was mainly in the generator networks.
 
 
 
 ## Dataset
+
+![](images/faces.png)
 
 The [CUHK Face Sketch Database (CUFS)](http://mmlab.ie.cuhk.edu.hk/archive/facesketch.html) was used for this project. In particular, the CUHK student dataset was used which contains 88 images in the training set. 80% of these images were used to train the network, and 20% of the images were used to qualitatively judge the quality of the GAN.
 
@@ -56,10 +59,12 @@ The following parts of the network remain the same as the original network:
 
 ## Comparisons
 
-| Parameter                      | Original Network | Modified Network |
-| ------------------------------ | ---------------- | ---------------- |
-| Number of trainable parameters | 123              | 456              |
-| Time to train per epoch        |                  |                  |
+| Parameter                      | Original Network                                             | Modified Network                                             |
+| ------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| Number of trainable parameters | **3,104,594** (1,545,425 [Generator] + 1,559,169 [Discriminator]) | **3,503,320** (1,947,729 [Generator] + 1,555,591 [Discriminator]) |
+| Time to train per epoch        | **47** seconds                                               | **40** seconds                                               |
+
+*Both networks were trained for 50 epochs.*
 
 ### Sketch to Image network
 
