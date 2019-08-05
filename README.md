@@ -66,7 +66,7 @@ The following parts of the network remain the same as the original network:
 | Number of trainable parameters | **3,104,594** (1,545,425 [Generator] + 1,559,169 [Discriminator]) | **3,503,320** (1,947,729 [Generator] + 1,555,591 [Discriminator]) |
 | Time to train per epoch        | **47** seconds                                               | **40** seconds                                               |
 
-*Both networks were trained for 50 epochs.*
+*Both networks were trained for 50 epochs and the best weights were saved and used for evaluating the test set.*
 
 
 
